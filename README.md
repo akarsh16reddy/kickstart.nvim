@@ -1,5 +1,8 @@
 # kickstart.nvim
 
+## Screenshot
+![As of June 2026](images/screenshot.png)
+
 ## Introduction
 
 A starting point for Neovim that is:
