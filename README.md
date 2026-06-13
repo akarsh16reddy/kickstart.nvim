@@ -3,6 +3,8 @@
 ## Screenshot
 ![As of June 2026](images/screenshot.png)
 
+Background image URL: [https://drive.google.com/drive/u/2/folders/1nyIBvcuf5KrLB0_exnChQmoTCNAmdMi_](https://drive.google.com/drive/u/2/folders/1nyIBvcuf5KrLB0_exnChQmoTCNAmdMi_)
+
 ## Introduction
 
 A starting point for Neovim that is:
