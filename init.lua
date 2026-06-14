@@ -1,4 +1,6 @@
 --[[
+vim.keymap.set('n', '<leader>sp', '<cmd>Telescope projects<cr>', { desc = '[Q]uit Git Diffview' })
+vim.keymap.set('n', '<leader>sp', '<cmd>Telescope projects<cr>', { desc = '[Q]uit Git Diffview' })
 
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
@@ -393,12 +395,10 @@ do
     transparent = true,
     styles = {
       comments = { italic = false }, -- Disable italics in comments
-      sidebars = "transparent",
-      floats = "transparent"
+      sidebars = 'transparent',
+      floats = 'transparent',
     },
-    on_highlights = function(hl, c)
-      hl.CursorLine = {bg = c.fg_gutter } 
-    end
+    on_highlights = function(hl, c) hl.CursorLine = { bg = c.fg_gutter } end,
   }
 
   -- Load the colorscheme here.
@@ -533,9 +533,9 @@ do
   vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
   vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S]earch [C]ommands' })
   vim.keymap.set('n', '<leader><leader>', function()
-    builtin.buffers({
-      initial_mode = "normal",
-    })
+    builtin.buffers {
+      initial_mode = 'normal',
+    }
   end, { desc = '[ ] Find existing buffers' })
 
   -- Add Telescope-based LSP pickers when an LSP attaches to a buffer.
@@ -1001,114 +1001,114 @@ vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 vim.g.netrw_keepdir = 0
 
-vim.pack.add({
+vim.pack.add {
   {
     src = 'https://github.com/nvim-neo-tree/neo-tree.nvim',
-    version = vim.version.range('3')
+    version = vim.version.range '3',
   },
   -- dependencies
-  "https://github.com/nvim-lua/plenary.nvim",
-  "https://github.com/MunifTanjim/nui.nvim",
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/MunifTanjim/nui.nvim',
   -- optional, but recommended
-  "https://github.com/nvim-tree/nvim-web-devicons",
-})
+  'https://github.com/nvim-tree/nvim-web-devicons',
+}
 
-vim.pack.add({
-  "https://github.com/nvimdev/dashboard-nvim",
-  "https://github.com/nvim-tree/nvim-web-devicons",
-})
+vim.pack.add {
+  'https://github.com/nvimdev/dashboard-nvim',
+  'https://github.com/nvim-tree/nvim-web-devicons',
+}
 
-require("dashboard").setup({
-  theme = "hyper",
+require('dashboard').setup {
+  theme = 'hyper',
 
   config = {
     week_header = {
       enable = false,
     },
     header = {
-      "",
-      "███╗   ██╗██╗   ██╗██╗███╗   ███╗",
-      "████╗  ██║██║   ██║██║████╗ ████║",
-      "██╔██╗ ██║██║   ██║██║██╔████╔██║",
-      "██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║",
-      "██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║",
-      "╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝",
-      "",
+      '',
+      '███╗   ██╗██╗   ██╗██╗███╗   ███╗',
+      '████╗  ██║██║   ██║██║████╗ ████║',
+      '██╔██╗ ██║██║   ██║██║██╔████╔██║',
+      '██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║',
+      '██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║',
+      '╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝',
+      '',
     },
 
     shortcut = {
       {
-        desc = "Files",
-        key = "f",
-        action = "Telescope find_files",
+        desc = 'Files',
+        key = 'f',
+        action = 'Telescope find_files',
       },
       {
-        desc = "Grep",
-        key = "g",
-        action = "Telescope live_grep",
+        desc = 'Grep',
+        key = 'g',
+        action = 'Telescope live_grep',
       },
       {
-        desc = "Recent",
-        key = "r",
-        action = "Telescope oldfiles",
+        desc = 'Recent',
+        key = 'r',
+        action = 'Telescope oldfiles',
       },
       {
-        desc = "Config",
-        key = "c",
-        action = "edit $MYVIMRC",
+        desc = 'Config',
+        key = 'c',
+        action = 'edit $MYVIMRC',
       },
       {
-        desc = "Quit",
-        key = "q",
-        action = "quit",
+        desc = 'Quit',
+        key = 'q',
+        action = 'quit',
       },
     },
 
     project = {
       enable = true,
       limit = 8,
-      label = "Recent Projects",
+      label = 'Recent Projects',
       action = function(path)
-        require("telescope.builtin").find_files({
+        require('telescope.builtin').find_files {
           cwd = path,
-        })
+        }
       end,
     },
 
     mru = {
       enable = true,
       limit = 10,
-      label = "Recent Files",
+      label = 'Recent Files',
       cwd_only = false,
     },
 
     footer = {},
   },
-})
+}
 
 -- ============================================================
 -- NEOGIT & DIFFVIEW SETUP
 -- ============================================================
 -- 1. Download the plugins
-vim.pack.add({
-  "https://github.com/sindrets/diffview.nvim",
-  "https://github.com/NeogitOrg/neogit",
-  -- Note: Neogit requires plenary.nvim, but you already have it 
+vim.pack.add {
+  'https://github.com/sindrets/diffview.nvim',
+  'https://github.com/NeogitOrg/neogit',
+  -- Note: Neogit requires plenary.nvim, but you already have it
   -- installed via your neo-tree and telescope dependencies.
-})
+}
 
 -- 2. Initialize Diffview (optional, but highly recommended for side-by-side diffs)
-require("diffview").setup({})
+require('diffview').setup {}
 
 -- 3. Initialize Neogit and wire it up to your existing tools
-require("neogit").setup({
+require('neogit').setup {
   integrations = {
     -- This tells Neogit to use Telescope for finding branches/commits
     telescope = true,
     -- This tells Neogit to use Diffview for viewing file changes
     diffview = true,
   },
-})
+}
 
 -- 4. Set your keymap to open the UI
 vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'Show Neo[G]it UI' })
@@ -1116,3 +1116,25 @@ vim.keymap.set('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'Show Neo[G]it UI'
 vim.keymap.set('n', '<leader>gd', '<cmd>DiffviewOpen<cr>', { desc = 'Open Git [D]iffview' })
 vim.keymap.set('n', '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', { desc = 'Git [H]istory (Current File)' })
 vim.keymap.set('n', '<leader>gq', '<cmd>DiffviewClose<cr>', { desc = '[Q]uit Git Diffview' })
+
+-- vim.pack.add {
+--   gh 'goolord/alpha-nvim'
+-- }
+-- require('alpha').setup(require 'alpha.themes.startify'.config)
+
+-- vim.pack.add {
+--   gh 'olimorris/persisted.nvim'
+-- }
+-- require('persisted').setup()
+
+vim.pack.add({
+    gh "DrKJeff16/project.nvim"
+})
+require('project').setup()
+require('telescope').load_extension('projects')
+vim.keymap.set('n', '<leader>sp', '<cmd>Telescope projects<cr>', { desc = '[S]earch [P]rojects' })
+vim.api.nvim_create_autocmd("DirChanged", {
+  callback = function()
+    vim.cmd("Neotree reveal")
+  end,
+})
