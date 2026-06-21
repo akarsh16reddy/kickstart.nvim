@@ -1168,6 +1168,10 @@ require("spaceport").setup({
   -- projectEntry = "Neotree reveal action=focus",
   -- projectEntry = "Neotree reveal",
   projectEntry = "enew | Neotree focus",
+  shortcuts = {
+    -- Press 'c' to instantly jump to your neovim config
+    { "f", ".config/nvim" },
+  },
   sections = {
     "_global_remaps",
     {
