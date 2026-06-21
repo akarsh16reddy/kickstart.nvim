@@ -1013,6 +1013,14 @@ vim.pack.add {
   'https://github.com/nvim-tree/nvim-web-devicons',
 }
 
+require('neo-tree').setup {
+  filesystem = {
+    filtered_items = {
+      visible = true,
+    }
+  }
+}
+
 vim.pack.add {
   'https://github.com/nvimdev/dashboard-nvim',
   'https://github.com/nvim-tree/nvim-web-devicons',
@@ -1065,7 +1073,7 @@ require('dashboard').setup {
     },
 
     project = {
-      enable = true,
+      enable = false,
       limit = 8,
       label = 'Recent Projects',
       action = function(path)
@@ -1076,7 +1084,7 @@ require('dashboard').setup {
     },
 
     mru = {
-      enable = true,
+      enable = false,
       limit = 10,
       label = 'Recent Files',
       cwd_only = false,
@@ -1138,3 +1146,14 @@ vim.api.nvim_create_autocmd("DirChanged", {
     vim.cmd("Neotree reveal")
   end,
 })
+
+vim.pack.add({
+    -- 'https://github.com/nvim-mini/mini.icons',        -- if you use standalone mini plugins
+    'https://github.com/nvim-tree/nvim-web-devicons', -- if you prefer nvim-web-devicons
+    'https://github.com/MeanderingProgrammer/render-markdown.nvim',
+})
+-- require('render-markdown').setup({}) -- only mandatory if you want to set custom options
+
+vim.keymap.set("n", "<leader>mr", function()
+    require("render-markdown").toggle()
+end, { desc = "Toggle Markdown rendering" })
