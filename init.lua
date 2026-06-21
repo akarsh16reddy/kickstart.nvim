@@ -1015,84 +1015,85 @@ vim.pack.add {
 
 require('neo-tree').setup {
   filesystem = {
+    hijack_netrw_behavior = "disabled",
     filtered_items = {
       visible = true,
     }
   }
 }
 
-vim.pack.add {
-  'https://github.com/nvimdev/dashboard-nvim',
-  'https://github.com/nvim-tree/nvim-web-devicons',
-}
-
-require('dashboard').setup {
-  theme = 'hyper',
-
-  config = {
-    week_header = {
-      enable = false,
-    },
-    header = {
-      '',
-      '███╗   ██╗██╗   ██╗██╗███╗   ███╗',
-      '████╗  ██║██║   ██║██║████╗ ████║',
-      '██╔██╗ ██║██║   ██║██║██╔████╔██║',
-      '██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║',
-      '██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║',
-      '╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝',
-      '',
-    },
-
-    shortcut = {
-      {
-        desc = 'Files',
-        key = 'f',
-        action = 'Telescope find_files',
-      },
-      {
-        desc = 'Grep',
-        key = 'g',
-        action = 'Telescope live_grep',
-      },
-      {
-        desc = 'Recent',
-        key = 'r',
-        action = 'Telescope oldfiles',
-      },
-      {
-        desc = 'Config',
-        key = 'c',
-        action = 'edit $MYVIMRC',
-      },
-      {
-        desc = 'Quit',
-        key = 'q',
-        action = 'quit',
-      },
-    },
-
-    project = {
-      enable = false,
-      limit = 8,
-      label = 'Recent Projects',
-      action = function(path)
-        require('telescope.builtin').find_files {
-          cwd = path,
-        }
-      end,
-    },
-
-    mru = {
-      enable = false,
-      limit = 10,
-      label = 'Recent Files',
-      cwd_only = false,
-    },
-
-    footer = {},
-  },
-}
+-- vim.pack.add {
+--   'https://github.com/nvimdev/dashboard-nvim',
+--   'https://github.com/nvim-tree/nvim-web-devicons',
+-- }
+--
+-- require('dashboard').setup {
+--   theme = 'hyper',
+--
+--   config = {
+--     week_header = {
+--       enable = false,
+--     },
+--     header = {
+--       '',
+--       '███╗   ██╗██╗   ██╗██╗███╗   ███╗',
+--       '████╗  ██║██║   ██║██║████╗ ████║',
+--       '██╔██╗ ██║██║   ██║██║██╔████╔██║',
+--       '██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║',
+--       '██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║',
+--       '╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝',
+--       '',
+--     },
+--
+--     shortcut = {
+--       {
+--         desc = 'Files',
+--         key = 'f',
+--         action = 'Telescope find_files',
+--       },
+--       {
+--         desc = 'Grep',
+--         key = 'g',
+--         action = 'Telescope live_grep',
+--       },
+--       {
+--         desc = 'Recent',
+--         key = 'r',
+--         action = 'Telescope oldfiles',
+--       },
+--       {
+--         desc = 'Config',
+--         key = 'c',
+--         action = 'edit $MYVIMRC',
+--       },
+--       {
+--         desc = 'Quit',
+--         key = 'q',
+--         action = 'quit',
+--       },
+--     },
+--
+--     project = {
+--       enable = false,
+--       limit = 8,
+--       label = 'Recent Projects',
+--       action = function(path)
+--         require('telescope.builtin').find_files {
+--           cwd = path,
+--         }
+--       end,
+--     },
+--
+--     mru = {
+--       enable = false,
+--       limit = 10,
+--       label = 'Recent Files',
+--       cwd_only = false,
+--     },
+--
+--     footer = {},
+--   },
+-- }
 
 -- ============================================================
 -- NEOGIT & DIFFVIEW SETUP
@@ -1141,11 +1142,11 @@ vim.pack.add({
 require('project').setup()
 require('telescope').load_extension('projects')
 vim.keymap.set('n', '<leader>sp', '<cmd>Telescope projects<cr>', { desc = '[S]earch [P]rojects' })
-vim.api.nvim_create_autocmd("DirChanged", {
-  callback = function()
-    vim.cmd("Neotree reveal")
-  end,
-})
+-- vim.api.nvim_create_autocmd("DirChanged", {
+--   callback = function()
+--     vim.cmd("Neotree reveal")
+--   end,
+-- })
 
 vim.pack.add({
     -- 'https://github.com/nvim-mini/mini.icons',        -- if you use standalone mini plugins
@@ -1157,3 +1158,39 @@ vim.pack.add({
 vim.keymap.set("n", "<leader>mr", function()
     require("render-markdown").toggle()
 end, { desc = "Toggle Markdown rendering" })
+
+vim.pack.add({
+  { src = "https://github.com/CWood-sdf/spaceport.nvim" },
+})
+
+require("spaceport").setup({
+  projectHomes = {},
+  -- projectEntry = "Neotree reveal action=focus",
+  -- projectEntry = "Neotree reveal",
+  projectEntry = "enew | Neotree focus",
+  sections = {
+    "_global_remaps",
+    {
+      lines = function()
+        return {
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          "  ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
+          "  ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
+          "  ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
+          "  ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
+          "  ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
+          "  ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
+        }
+      end,
+    },
+    "remaps",
+    "recents",
+  },
+})
+
