@@ -1014,6 +1014,13 @@ vim.pack.add {
 }
 
 require('neo-tree').setup {
+  window = {
+    mappings = {
+      ["l"] = "open",
+      ["h"] = "close_node",
+      ["<CR>"] = "open",
+    },
+  },
   filesystem = {
     hijack_netrw_behavior = "disabled",
     filtered_items = {
@@ -1170,7 +1177,7 @@ require("spaceport").setup({
   projectEntry = "enew | Neotree focus",
   shortcuts = {
     -- Press 'c' to instantly jump to your neovim config
-    { "f", ".config/nvim" },
+    { "c", ".config/nvim" },
   },
   sections = {
     "_global_remaps",
@@ -1198,3 +1205,9 @@ require("spaceport").setup({
   },
 })
 
+vim.keymap.set(
+  "n",
+  "<leader>e",
+  "<Cmd>Neotree reveal toggle left<CR>",
+  { desc = "[E]xplorer" }
+)
