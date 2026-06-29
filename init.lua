@@ -1291,3 +1291,16 @@ vim.keymap.set("v", "<leader>as", "<cmd>ClaudeCodeSend<cr>", { desc = "Send sele
 
 vim.keymap.set("n", "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", { desc = "Accept diff" })
 vim.keymap.set("n", "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", { desc = "Deny diff" })
+
+-- window resizing
+vim.keymap.set("n", "<A-h>", "<C-w><")
+vim.keymap.set("n", "<A-l>", "<C-w>>")
+vim.keymap.set("n", "<A-j>", "<C-w>-")
+vim.keymap.set("n", "<A-k>", "<C-w>+")
+
+-- keep splits balanced when terminal resizes
+vim.api.nvim_create_autocmd("VimResized", {
+  callback = function()
+    vim.cmd("wincmd =")
+  end,
+})
