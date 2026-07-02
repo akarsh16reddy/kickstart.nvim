@@ -955,7 +955,7 @@ do
     local has_indent_query = vim.treesitter.query.get(language, 'indents') ~= nil
 
     -- Enable treesitter based indentation
-    if has_indent_query then vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end
+    if has_indent_query and language ~= "python" then vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end
   end
 
   local available_parsers = require('nvim-treesitter').get_available()
@@ -1052,11 +1052,11 @@ require('neo-tree').setup({
         local modify = vim.fn.fnamemodify
 
         local choices = {
-          { label = "Absolute path", value = filepath },
-          { label = "Path relative to CWD", value = modify(filepath, ":.") },
-          { label = "Path relative to HOME", value = modify(filepath, ":~") },
-          { label = "Filename", value = filename },
           { label = "Filename without extension", value = modify(filename, ":r") },
+          { label = "Filename", value = filename },
+          { label = "Path relative to CWD", value = modify(filepath, ":.") },
+          { label = "Absolute path", value = filepath },
+          { label = "Path relative to HOME", value = modify(filepath, ":~") },
           { label = "Extension", value = modify(filename, ":e") },
         }
 
