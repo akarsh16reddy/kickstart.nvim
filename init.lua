@@ -1304,3 +1304,13 @@ vim.api.nvim_create_autocmd("VimResized", {
     vim.cmd("wincmd =")
   end,
 })
+
+vim.pack.add({
+  { src = "https://github.com/bullets-vim/bullets.vim" },
+})
+
+vim.g.bullets_enabled_file_types = {
+  "scratch",
+  "text",
+}
+
