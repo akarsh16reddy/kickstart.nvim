@@ -108,3 +108,79 @@
 --   gh 'olimorris/persisted.nvim'
 -- }
 -- require('persisted').setup()
+
+
+
+-- dashboard.nvim
+-- vim.pack.add {
+--   'https://github.com/nvimdev/dashboard-nvim',
+--   'https://github.com/nvim-tree/nvim-web-devicons',
+-- }
+--
+-- require('dashboard').setup {
+--   theme = 'hyper',
+--
+--   config = {
+--     week_header = {
+--       enable = false,
+--     },
+--     header = {
+--       '',
+--       '███╗   ██╗██╗   ██╗██╗███╗   ███╗',
+--       '████╗  ██║██║   ██║██║████╗ ████║',
+--       '██╔██╗ ██║██║   ██║██║██╔████╔██║',
+--       '██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║',
+--       '██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║',
+--       '╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝',
+--       '',
+--     },
+--
+--     shortcut = {
+--       {
+--         desc = 'Files',
+--         key = 'f',
+--         action = 'Telescope find_files',
+--       },
+--       {
+--         desc = 'Grep',
+--         key = 'g',
+--         action = 'Telescope live_grep',
+--       },
+--       {
+--         desc = 'Recent',
+--         key = 'r',
+--         action = 'Telescope oldfiles',
+--       },
+--       {
+--         desc = 'Config',
+--         key = 'c',
+--         action = 'edit $MYVIMRC',
+--       },
+--       {
+--         desc = 'Quit',
+--         key = 'q',
+--         action = 'quit',
+--       },
+--     },
+--
+--     project = {
+--       enable = false,
+--       limit = 8,
+--       label = 'Recent Projects',
+--       action = function(path)
+--         require('telescope.builtin').find_files {
+--           cwd = path,
+--         }
+--       end,
+--     },
+--
+--     mru = {
+--       enable = false,
+--       limit = 10,
+--       label = 'Recent Files',
+--       cwd_only = false,
+--     },
+--
+--     footer = {},
+--   },
+-- }
