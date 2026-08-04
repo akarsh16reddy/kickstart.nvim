@@ -1188,115 +1188,17 @@ vim.keymap.set('n', '<leader>gd', '<cmd>DiffviewOpen<cr>', { desc = 'Open Git [D
 vim.keymap.set('n', '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', { desc = 'Git [H]istory (Current File)' })
 vim.keymap.set('n', '<leader>gq', '<cmd>DiffviewClose<cr>', { desc = '[Q]uit Git Diffview' })
 
--- vim.pack.add {
---   gh 'goolord/alpha-nvim'
--- }
--- require('alpha').setup(require 'alpha.themes.startify'.config)
 
--- vim.pack.add {
---   gh 'olimorris/persisted.nvim'
--- }
--- require('persisted').setup()
-
-vim.pack.add({
-    gh "DrKJeff16/project.nvim"
-})
-require('project').setup()
-require('telescope').load_extension('projects')
-vim.keymap.set('n', '<leader>sp', '<cmd>Telescope projects<cr>', { desc = '[S]earch [P]rojects' })
--- vim.api.nvim_create_autocmd("DirChanged", {
---   callback = function()
---     vim.cmd("Neotree reveal")
---   end,
--- })
 
 vim.pack.add({
     -- 'https://github.com/nvim-mini/mini.icons',        -- if you use standalone mini plugins
-    'https://github.com/nvim-tree/nvim-web-devicons', -- if you prefer nvim-web-devicons
+    -- 'https://github.com/nvim-tree/nvim-web-devicons', -- if you prefer nvim-web-devicons
     'https://github.com/MeanderingProgrammer/render-markdown.nvim',
 })
--- require('render-markdown').setup({}) -- only mandatory if you want to set custom options
 
 vim.keymap.set("n", "<leader>mr", function()
     require("render-markdown").toggle()
 end, { desc = "Toggle Markdown rendering" })
-
-vim.pack.add({
-  { src = "https://github.com/CWood-sdf/spaceport.nvim" },
-})
-
-require("spaceport").setup({
-  projectHomes = {},
-  -- projectEntry = "Neotree reveal action=focus",
-  -- projectEntry = "Neotree reveal",
-  projectEntry = "enew | Neotree focus",
-  shortcuts = {
-    -- Press 'c' to instantly jump to your neovim config
-    { "c", ".config/nvim" },
-  },
-  sections = {
-    "_global_remaps",
-    {
-      lines = function()
-        return {
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          "  ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
-          "  ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
-          "  ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
-          "  ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
-          "  ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
-          "  ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
-        }
-      end,
-    },
-    "remaps",
-    "recents",
-  },
-})
-
-vim.keymap.set(
-  "n",
-  "<leader>e",
-  "<Cmd>Neotree reveal toggle left<CR>",
-  { desc = "[E]xplorer" }
-)
-
-
--- ============================================================
--- CLAUDE CODE (AI)
--- ============================================================
-vim.pack.add {
-  gh "coder/claudecode.nvim",
-}
-
-require("claudecode").setup({})
-
-vim.keymap.set("n", "<leader>ac", "<cmd>ClaudeCode<cr>", { desc = "Toggle Claude" })
-vim.keymap.set("n", "<leader>af", "<cmd>ClaudeCodeFocus<cr>", { desc = "Focus Claude" })
-
-vim.keymap.set("n", "<leader>ar", "<cmd>ClaudeCode --resume<cr>", { desc = "Resume Claude" })
-vim.keymap.set("n", "<leader>aC", "<cmd>ClaudeCode --continue<cr>", { desc = "Continue Claude" })
-
-vim.keymap.set("n", "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", { desc = "Select model" })
-
-vim.keymap.set("n", "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", { desc = "Add buffer" })
-
-vim.keymap.set("v", "<leader>as", "<cmd>ClaudeCodeSend<cr>", { desc = "Send selection" })
-
-vim.keymap.set("n", "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", { desc = "Accept diff" })
-vim.keymap.set("n", "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", { desc = "Deny diff" })
-
--- window resizing
-vim.keymap.set("n", "<A-h>", "<C-w><")
-vim.keymap.set("n", "<A-l>", "<C-w>>")
-vim.keymap.set("n", "<A-j>", "<C-w>-")
-vim.keymap.set("n", "<A-k>", "<C-w>+")
 
 -- keep splits balanced when terminal resizes
 vim.api.nvim_create_autocmd("VimResized", {
@@ -1304,13 +1206,4 @@ vim.api.nvim_create_autocmd("VimResized", {
     vim.cmd("wincmd =")
   end,
 })
-
-vim.pack.add({
-  { src = "https://github.com/bullets-vim/bullets.vim" },
-})
-
-vim.g.bullets_enabled_file_types = {
-  "scratch",
-  "text",
-}
 
