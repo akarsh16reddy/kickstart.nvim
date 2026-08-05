@@ -1017,81 +1017,36 @@ vim.keymap.set('n', 'k', 'gk')
 vim.g.netrw_keepdir = 0
 
 vim.pack.add {
-  {
-    src = 'https://github.com/nvim-neo-tree/neo-tree.nvim',
-    version = vim.version.range '3',
-  },
-  -- dependencies
-  'https://github.com/nvim-lua/plenary.nvim',
-  'https://github.com/MunifTanjim/nui.nvim',
-  -- optional, but recommended
-  'https://github.com/nvim-tree/nvim-web-devicons',
+  'https://github.com/mikavilpas/yazi.nvim',
 }
 
-require('neo-tree').setup({
-  window = {
-    mappings = {
-      ["l"] = "open",
-      ["h"] = "close_node",
-      ["<CR>"] = "open",
+require('yazi').setup {
+  open_for_directories = true,
+  floating_window_scaling_factor = 0.7,
+}
 
-      ["Y"] = function(state)
-        local node = state.tree:get_node()
-        if not node or not node.id then
-          vim.notify("No node selected.", vim.log.levels.WARN)
-          return
-        end
+vim.g.loaded_netrwPlugin = 1
 
-        if vim.fn.has("clipboard") == 0 then
-          vim.notify("System clipboard is not available.", vim.log.levels.ERROR)
-          return
-        end
-
-        local filepath = node:get_id()
-        local filename = node.name
-        local modify = vim.fn.fnamemodify
-
-        local choices = {
-          { label = "Filename without extension", value = modify(filename, ":r") },
-          { label = "Filename", value = filename },
-          { label = "Path relative to CWD", value = modify(filepath, ":.") },
-          { label = "Absolute path", value = filepath },
-          { label = "Path relative to HOME", value = modify(filepath, ":~") },
-          { label = "Extension", value = modify(filename, ":e") },
-        }
-
-        vim.ui.select(choices, {
-          prompt = "Choose what to copy:",
-          format_item = function(item)
-            return string.format("%-30s %s", item.label, item.value)
-          end,
-        }, function(choice)
-            if not choice then
-              return
-            end
-
-            vim.fn.setreg("+", choice.value)
-          vim.notify("Copied: " .. choice.value)
-        end)
-      end,
-    },
-  },
-  filesystem = {
-    hijack_netrw_behavior = "disabled",
-    filtered_items = {
-      visible = true,
-    },
-  },
-})
-
-vim.keymap.set(
-  "n",
-  "<leader>e",
-  "<Cmd>Neotree reveal toggle left<CR>",
-  { desc = "[E]xplorer" }
+ vim.keymap.set(
+  'n',
+  '<leader>E',
+  '<Cmd>Yazi cwd<CR>',
+  { desc = 'Explorer in working directory' }
 )
 
+vim.keymap.set(
+  { 'n', 'v' },
+  '<leader>e',
+  '<Cmd>Yazi<CR>',
+  { desc = '[E]xplorer' }
+)
 
+vim.keymap.set(
+  'n',
+  '<leader>ey',
+  '<Cmd>Yazi toggle<CR>',
+  { desc = 'Resume Yazi session' }
+)
 -- ============================================================
 -- NEOGIT & DIFFVIEW SETUP
 -- ============================================================
