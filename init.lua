@@ -547,6 +547,7 @@ do
   vim.keymap.set('n', '<leader><leader>', function()
     builtin.buffers {
       initial_mode = 'normal',
+      sort_mru = true
     }
   end, { desc = '[ ] Find existing buffers' })
 
