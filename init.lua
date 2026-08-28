@@ -1113,4 +1113,81 @@ vim.api.nvim_create_autocmd("VimResized", {
   end,
 })
 
+vim.pack.add {
+  {
+    src = "https://github.com/obsidian-nvim/obsidian.nvim",
+    version = vim.version.range "*", -- use latest release, remove to use latest commit
+  },
+}
+
+require("obsidian").setup {
+  legacy_commands = false, -- this will be removed in 4.0.0
+  workspaces = {
+    {
+      name = "All Things Life V2",
+      path = "C:/Akarsh/workspace/All Things Life v2",
+    },
+  },
+}
+
+vim.pack.add {
+  {
+    src = "https://github.com/folke/sidekick.nvim",
+  },
+}
+
+require("sidekick").setup {
+  nes = {
+    enabled = false,
+  },
+
+  cli = {
+    mux = {
+      backend = "zellij",
+      enabled = false,
+    },
+  },
+}
+
+-- Toggle current AI CLI
+vim.keymap.set("n", "<leader>aa", function()
+  require("sidekick.cli").toggle()
+end, { desc = "Sidekick Toggle CLI" })
+
+-- Select Codex / Claude / Gemini / etc.
+vim.keymap.set("n", "<leader>as", function()
+  require("sidekick.cli").select {
+    filter = { installed = true },
+  }
+end, { desc = "Select AI CLI" })
+
+-- Close/detach CLI session
+vim.keymap.set("n", "<leader>ad", function()
+  require("sidekick.cli").close()
+end, { desc = "Detach AI CLI" })
+
+-- Send context under cursor
+vim.keymap.set({ "n", "x" }, "<leader>at", function()
+  require("sidekick.cli").send { msg = "{this}" }
+end, { desc = "Send This to AI" })
+
+-- Send entire current file
+vim.keymap.set("n", "<leader>af", function()
+  require("sidekick.cli").send { msg = "{file}" }
+end, { desc = "Send File to AI" })
+
+-- Send visual selection
+vim.keymap.set("x", "<leader>av", function()
+  require("sidekick.cli").send { msg = "{selection}" }
+end, { desc = "Send Selection to AI" })
+
+-- Select one of Sidekick's prompts
+vim.keymap.set({ "n", "x" }, "<leader>ap", function()
+  require("sidekick.cli").prompt()
+end, { desc = "Select AI Prompt" })
+
+-- Focus the Sidekick terminal
+vim.keymap.set({ "n", "t", "i", "x" }, "<C-.>", function()
+  require("sidekick.cli").focus()
+end, { desc = "Focus Sidekick" })
 
