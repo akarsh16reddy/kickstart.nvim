@@ -1195,3 +1195,22 @@ vim.pack.add { 'https://github.com/chentoast/marks.nvim' }
 require('marks').setup {
   default_mappings = false,
 }
+
+vim.pack.add { gh 'RRethy/vim-illuminate' }
+
+require("illuminate").configure({
+  under_cursor = true,
+  delay = 50
+})
+
+vim.api.nvim_set_hl(0, "IlluminatedWordText", {
+  bg = "#3b4252",
+})
+
+vim.api.nvim_set_hl(0, "IlluminatedWordRead", {
+  bg = "#3b4252",
+})
+
+vim.api.nvim_set_hl(0, "IlluminatedWordWrite", {
+  bg = "#3b4252",
+})
